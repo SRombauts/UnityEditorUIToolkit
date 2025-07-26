@@ -7,7 +7,7 @@ public class SimpleCustomEditor : EditorWindow
     [SerializeField]
     private VisualTreeAsset m_VisualTreeAsset = default;
 
-    [MenuItem("Window/UI Toolkit/SimpleCustomEditor")]
+    [MenuItem("Window/UI Toolkit/Editor Windows/SimpleCustomEditor")]
     public static void ShowExample()
     {
         SimpleCustomEditor wnd = GetWindow<SimpleCustomEditor>();
