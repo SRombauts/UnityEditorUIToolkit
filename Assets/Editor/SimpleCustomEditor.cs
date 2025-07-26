@@ -7,11 +7,11 @@ public class SimpleCustomEditor : EditorWindow
     [SerializeField]
     private VisualTreeAsset m_VisualTreeAsset = default;
 
-    [MenuItem("Window/UI Toolkit/Editor Windows/SimpleCustomEditor")]
+    [MenuItem("Window/UI Toolkit/Editor Windows/Simple Custom Editor")]
     public static void ShowExample()
     {
         SimpleCustomEditor wnd = GetWindow<SimpleCustomEditor>();
-        wnd.titleContent = new GUIContent("SimpleCustomEditor");
+        wnd.titleContent = new GUIContent("Simple Custom Editor");
     }
 
     public void CreateGUI()
@@ -35,14 +35,22 @@ public class SimpleCustomEditor : EditorWindow
     void SetupButtonHandler()
     {
         // Find the button in the UXML and set up a click handler
-        Button myButton = rootVisualElement.Q<Button>("button1");
-        if (myButton != null)
-        {
-            myButton.clicked += () => Debug.Log("Button clicked!");
-        }
-        else
-        {
-            Debug.LogError("Button with name 'button1' not found in UXML.");
-        }
+        Button button1 = rootVisualElement.Query<Button>("button1");
+        button1.RegisterCallback<ClickEvent>(OnButtonClick);
     }
+
+    void OnButtonClick(ClickEvent evt)
+    {
+        Debug.Log("Button was clicked!");
+        m_ClickCount++;
+
+        Label label = rootVisualElement.Query<Label>("label1");
+        Toggle toggle = rootVisualElement.Query<Toggle>("toggle1");
+        if (toggle.value == true)
+            label.text = "Button clicked " + m_ClickCount + " times.";
+        else
+            label.text = "";
+    }
+
+    private int m_ClickCount = 0;
 }
