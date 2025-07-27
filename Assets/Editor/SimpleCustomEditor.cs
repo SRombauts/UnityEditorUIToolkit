@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using PopupWindow = UnityEditor.PopupWindow;
 
 public class SimpleCustomEditor : EditorWindow
 {
@@ -26,10 +27,11 @@ public class SimpleCustomEditor : EditorWindow
         var elementsFromUxml = m_VisualTreeAsset.Instantiate();
         rootVisualElement.Add(elementsFromUxml);
 
-        SetupButtonHandler();
+        SetupButton1Handler();
+        SetupPopupButtonHandler();
     }
 
-    void SetupButtonHandler()
+    void SetupButton1Handler()
     {
         // Find the button in the UXML and set up a click handler
         var button = rootVisualElement.Q<Button>("button1");
@@ -47,6 +49,17 @@ public class SimpleCustomEditor : EditorWindow
             label.text = "Button clicked " + m_ClickCount + " times.";
         else
             label.text = "";
+    }
+
+    void SetupPopupButtonHandler()
+    {
+        var button = rootVisualElement.Q<Button>("popupButton");
+        button.clicked += () => OpenPopupWindow(button);
+    }
+
+    void OpenPopupWindow(Button button)
+    {
+        PopupWindow.Show(button.worldBound, new PopupContentExample());
     }
 
     private int m_ClickCount = 0;

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Label text="Are you sure about this? This cannot be undone!"/>
+    <ui:GroupBox style="flex-direction: row-reverse;">
+        <ui:Button text="Cancel " name="cancel"/>
+        <ui:Button text="Ok" name="ok"/>
+    </ui:GroupBox>
+</ui:UXML>
