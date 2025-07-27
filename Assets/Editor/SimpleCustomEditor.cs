@@ -17,15 +17,15 @@ public class SimpleCustomEditor : EditorWindow
 
     public void CreateGUI()
     {
+        // Instantiate the Editor Window entirely from it's UXML definition.
+        var elementsFromUxml = m_VisualTreeAsset.Instantiate();
+        rootVisualElement.Add(elementsFromUxml);
+
         // VisualElements objects can contain other VisualElement following a tree hierarchy.
         // Notes: creating elements in code is not recommended for complex UIs, prefer using UXML.
         // Doing so prevent using the UI Builder to design the UI.
-        var label = new Label("Hello World! From C#");
-        rootVisualElement.Add(label);
-
-        // Instantiate UXML
-        var elementsFromUxml = m_VisualTreeAsset.Instantiate();
-        rootVisualElement.Add(elementsFromUxml);
+        // var label = new Label("Hello World! From C#");
+        // rootVisualElement.Add(label);
 
         SetupButton1Handler();
         SetupPopupButtonHandler();
